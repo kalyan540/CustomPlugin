@@ -17,7 +17,7 @@
  * under the License.
  */
 import React, { useEffect, useState, createRef } from 'react';
-import { styled } from '@superset-ui/core';
+import { styled, SupersetClient } from '@superset-ui/core';
 import { SupersetPluginChartAssessmentProps, SupersetPluginChartAssessmentStylesProps } from './types';
 
 // The following Styles component is a <div> element, which has been styled using Emotion
@@ -436,11 +436,13 @@ export default function SupersetPluginChartAssessment(props: SupersetPluginChart
               <option value="" disabled>
                 {col}
               </option>
-              {[...new Set(data.map((row) => row[col]))].map((val) => (
-                <option key={val} value={val}>
-                  {val}
-                </option>
-              ))}
+              {[...new Set(data.map((row) => row[col]))]
+                .filter((val): val is string | number => typeof val === 'string' || typeof val === 'number')
+                .map((val) => (
+                  <option key={val} value={val}>
+                    {val}
+                  </option>
+                ))}
             </select>
           </div>
         ))}
