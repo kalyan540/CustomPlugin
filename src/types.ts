@@ -23,10 +23,10 @@ import {
 } from '@superset-ui/core';
 
 export interface SupersetPluginChartAssessmentStylesProps {
-  height?: number;
-  width?: number;
-  headerFontSize: keyof typeof supersetTheme.typography.sizes;
-  boldText: boolean;
+  height: number;
+  width: number;
+  headerFontSize?: keyof typeof supersetTheme.typography.sizes;
+  boldText?: boolean;
   datasource: string;
 }
 
